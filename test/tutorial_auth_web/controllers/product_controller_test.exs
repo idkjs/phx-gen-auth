@@ -12,6 +12,8 @@ defmodule TutorialAuthWeb.ProductControllerTest do
     product
   end
 
+  setup :register_and_log_in_user
+#   this is the first `describe` block
   describe "index" do
     test "lists all products", %{conn: conn} do
       conn = get(conn, Routes.product_path(conn, :index))

@@ -57,7 +57,7 @@ Remember to update your repository by running migrations:
 
 Add `resources "/products", ProductController` and configure private/public routes in `lib/tutorial_auth_web/router.ex`
 
-
+see [diff](https://github.com/idkjs/phx-gen-auth/commit/059ac5729126219f042c8a32af35d1ffdd37d5a6#diff-a541bf4bf7baaa51ad5b1c45a7f2ece2c7975e1ba0504c68f96ee4d81608098a)
 
 Then run `ecto.migrate`:
 ```sh
@@ -81,4 +81,26 @@ Generated tutorial_auth app
 tutorial_auth on  main [!?] via 💧 v1.11.2
  [I] ➜
 
+```
+
+# Step 3 - Update tests
+
+If I run the tests now, I will get some failing controller tests. That is because some of the routes are private and we need to make sure we run them as an authenticated user.
+
+Open the test file for [product_controller_test.exs](test/tutorial_auth_web/controllers/product_controller_test.exs) and add a `setup` before the first `describe` block. Then run `mix test`. All tests should pass.
+
+```sh
+ setup :register_and_log_in_user
+```
+
+Running the tests will pass now:
+
+```sh
+Generated tutorial_auth app
+........................................................................................................................
+
+Finished in 33.8 seconds
+120 tests, 0 failures
+
+Randomized with seed 720355
 ```
