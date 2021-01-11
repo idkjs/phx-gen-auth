@@ -4,7 +4,11 @@ defmodule TutorialAuthWeb.ProductControllerTest do
   alias TutorialAuth.Products
 
   @create_attrs %{description: "some description", name: "some name", price: 120.5}
-  @update_attrs %{description: "some updated description", name: "some updated name", price: 456.7}
+  @update_attrs %{
+    description: "some updated description",
+    name: "some updated name",
+    price: 456.7
+  }
   @invalid_attrs %{description: nil, name: nil, price: nil}
 
   def fixture(:product) do
@@ -13,7 +17,7 @@ defmodule TutorialAuthWeb.ProductControllerTest do
   end
 
   setup :register_and_log_in_user
-#   this is the first `describe` block
+  #   this is the first `describe` block
   describe "index" do
     test "lists all products", %{conn: conn} do
       conn = get(conn, Routes.product_path(conn, :index))
@@ -77,6 +81,7 @@ defmodule TutorialAuthWeb.ProductControllerTest do
     test "deletes chosen product", %{conn: conn, product: product} do
       conn = delete(conn, Routes.product_path(conn, :delete, product))
       assert redirected_to(conn) == Routes.product_path(conn, :index)
+
       assert_error_sent 404, fn ->
         get(conn, Routes.product_path(conn, :show, product))
       end

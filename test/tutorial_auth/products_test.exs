@@ -7,7 +7,11 @@ defmodule TutorialAuth.ProductsTest do
     alias TutorialAuth.Products.Product
 
     @valid_attrs %{description: "some description", name: "some name", price: 120.5}
-    @update_attrs %{description: "some updated description", name: "some updated name", price: 456.7}
+    @update_attrs %{
+      description: "some updated description",
+      name: "some updated name",
+      price: 456.7
+    }
     @invalid_attrs %{description: nil, name: nil, price: nil}
 
     def product_fixture(attrs \\ %{}) do

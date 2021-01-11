@@ -7,6 +7,15 @@
 # General application configuration
 use Mix.Config
 
+config :tutorial_auth, TutorialAuth.Guardian,
+  issuer: "tutorial",
+  secret_key: "BY8grm00++tVtByLhHG15he/3GlUG0rOSLmP2/2cbIRwdR4xJk1RHvqGHPFuNcF8",
+  ttl: {3, :days}
+
+config :tutorial_auth, TutorialAuthWeb.AuthAccessPipeline,
+  module: TutorialAuth.Guardian,
+  error_handler: TutorialAuthWeb.AuthErrorHandler
+
 config :tutorial_auth,
   ecto_repos: [TutorialAuth.Repo]
 
