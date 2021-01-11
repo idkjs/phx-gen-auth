@@ -1,7 +1,7 @@
-defmodule TutorialAuthWeb.Guardian do
+defmodule TutorialAuth.Guardian do
   use Guardian, otp_app: :tutorial_auth
 
-  alias TutorialAuthWeb.Accounts
+  alias TutorialAuth.Accounts
 
   def subject_for_token(resource, _claims) do
     sub = to_string(resource.id)
