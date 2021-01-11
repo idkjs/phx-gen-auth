@@ -1,0 +1,42 @@
+<div class="flex flex-wrap">
+  <div class="w-full md:w-2/3">
+    <div class="card">
+      <div class="card-header">
+        <h5 class="card-title">
+          Listing Products
+        </h5>
+        <%= link to: Routes.product_path(@conn, :new), class: "btn btn-icon btn-sm btn-light" do %>
+          <svg fill="currentColor" width="24" height="24" viewBox="0 0 20 20" stroke-width="2"><path fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+        <% end %>
+      </div>
+      <div class="card-body prose max-w-full">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Price</th>
+
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="products">
+<%= for product <- @products do %>
+            <tr id="product-<%= product.id %>">
+              <td><%= product.name %></td>
+              <td><%= product.description %></td>
+              <td><%= product.price %></td>
+
+              <td class="text-right">
+                <span><%= link "Show", to: Routes.product_path(@conn, :show, product) %></span>
+                <span><%= link "Edit", to: Routes.product_path(@conn, :edit, product) %></span>
+                <span><%= link "Delete", to: Routes.product_path(@conn, :delete, product), method: :delete, data: [confirm: "Are you sure?"] %></span>
+              </td>
+            </tr>
+<% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

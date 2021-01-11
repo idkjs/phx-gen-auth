@@ -1,0 +1,33 @@
+<div class="flex flex-wrap">
+  <div class="w-full md:w-2/3">
+    <div class="card shadow">
+      <div class="card-header">
+        <h5 class="card-title">
+          Show Product
+        </h5>
+      </div>
+      <div class="card-body prose">
+
+        <div>
+          <strong>Name:</strong>
+          <%= @product.name %>
+        </div>
+
+        <div>
+          <strong>Description:</strong>
+          <%= @product.description %>
+        </div>
+
+        <div>
+          <strong>Price:</strong>
+          <%= @product.price %>
+        </div>
+
+      </div>
+      <div class="card-footer">
+        <%= link "Edit", to: Routes.product_path(@conn, :edit, @product), class: "btn btn-link btn-sm" %>
+        <%= link "Back", to: Routes.product_path(@conn, :index), class: "btn btn-link btn-sm" %>
+      </div>
+    </div>
+  </div>
+</div>

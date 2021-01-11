@@ -59,14 +59,19 @@ defmodule TutorialAuthWeb.Router do
     put "/users/reset_password/:token", UserResetPasswordController, :update
   end
 
+# private routes
+# set authenticated only access to ProductController resources
   scope "/", TutorialAuthWeb do
     pipe_through [:browser, :require_authenticated_user]
 
+    resources "/products", ProductController, except: [:index, :show]
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
   end
 
+# Public routes
+# allow showing product even if not signed in/authenticated
   scope "/", TutorialAuthWeb do
     pipe_through [:browser]
 
@@ -74,5 +79,7 @@ defmodule TutorialAuthWeb.Router do
     get "/users/confirm", UserConfirmationController, :new
     post "/users/confirm", UserConfirmationController, :create
     get "/users/confirm/:token", UserConfirmationController, :confirm
+    resources "/products", ProductController, only: [:index, :show]
+    get "/", PageController, :index
   end
 end
