@@ -21,7 +21,7 @@ Ready to run in production? Please [check our deployment guides](https://hexdocs
 
 # Step One
 
-Generate boilerplate from
+Generate boilerplate from https://fullstackphoenix.com/boilerplates
 
 # Step 2
 
